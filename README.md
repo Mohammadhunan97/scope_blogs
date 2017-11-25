@@ -9,6 +9,7 @@
 GET | '/' | if(!session user): renders login form 
 GET | '/' | if(session user): renders private profile
 GET | '/signup/' | if(!session user): renders signup form + signup with facebook/google buttons
+| | |
 GET | '/post/dashboard'/ | renders all session user's followers posts
 GET | 'post/search/:query/' | renders all posts based on query
 GET | '/post/new/' | renders new_post layout (form to create a new post)
@@ -16,10 +17,12 @@ POST | '/post/new/' | creates a new post in database
 DELETE | '/post/delete/:id/' | deletes post with the params.id
 PUT | '/post/update/:id/' | updates a post with the params.id
 GET | '/post/update/:id/' | renders an update post layout based on the information of the post with the params.id
+| | |
 GET | '/user/profile/:id/' | renders public profile for req.params.id
 GET | '/user/profile/settings/' | renders private profile for session user
 POST | '/user/follower/new/' | creates a new follower for the session user
 DELETE | '/user/follower/:id/' | removes a follower from session user's document based on params.id 
+| | |
 POST | '/auth/facebook/new/' | creates a new facebook user in database
 POST | '/auth/google/new/' | creates a new google user in database
 POST | '/auth/local/new/' | creates a new facebook user in database
