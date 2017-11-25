@@ -1,0 +1,11 @@
+{
+  "name": "scope_blogs",
+  "version": "1.0.0",
+  "description": "node blog",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app"
+  },
+  "author": "mohammad hunan <mohammadhunan@gmail.com | @moe.mkr>",
+  "license": "ISC"
+}
