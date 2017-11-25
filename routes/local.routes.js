@@ -1,25 +1,8 @@
-/* this file is for local user routes
-	 all files in here go underneath yourorigin/localuser/<route>
-*/
-
-
-
 const Router 	   = require('express').Router(),
 	User		   = require('../model/user.model'),
 	bcrypt 		   = require('bcryptjs'),
-	salt 	 	   = bcrypt.genSaltSync(10),
-	displayRoutes  = require('../config/displayroutes');
+	salt 	 	   = bcrypt.genSaltSync(10);
 
-
-/* NOTE: the route /localuser/index below is purely for debugging/testing 
-	purposes it is highly recommended hat you don't use this route in production */
-
-// Router.get('/index',(req,res) => {
-// 	User.find({}).exec((error,user) => {
-// 		if(error) res.send(error);
-// 		res.send(user);
-// 	})
-// })
 
 
 
@@ -34,7 +17,6 @@ Router.post('/login',(req,res)=>{
 		}
 	})
 })
-displayRoutes.addRoute({type:'post',url:'/localuser/login/'})
 
 Router.post('/new',(req,res) => {
 	if(req.body.password === req.body.password2){
@@ -58,7 +40,6 @@ Router.post('/new',(req,res) => {
 	}
 	
 })
-displayRoutes.addRoute({type:'post',url:'/localuser/new/'})
 
 
 Router.put('/update/:id',(req,res) => {
@@ -81,7 +62,6 @@ Router.put('/update/:id',(req,res) => {
 		})
 	}
 })
-displayRoutes.addRoute({type:'put',url:'/localuser/update/:id'})
 
 Router.delete('/delete/:id',(req,res) => {
 	if(req.session.localUser && req.session.localUser._id === req.params.id) {
@@ -91,6 +71,5 @@ Router.delete('/delete/:id',(req,res) => {
 		})
 	}
 })
-displayRoutes.addRoute({type:'delete',url:'/localuser/delete/:id'})
 
 module.exports = Router;

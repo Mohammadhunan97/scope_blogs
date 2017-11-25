@@ -1,12 +1,10 @@
-/*
-	this page is for a compilation of all routes for all user, regardless of whether its a passport or local user
-*/
-const Router 	 	 = require('express').Router(),
-	displayRoutes  	 = require('../config/displayroutes');
+const Router 	 	 = require('express').Router();
+
+
 
 
 Router.get('/one/:id',(req,res) => {
-	console.log('baz');
+
 	if(req.isAuthenticated() && req.user._id == req.params.id) {
 		res.render('profile',{user: req.user});
 	}else if(req.session.localUser){
@@ -29,8 +27,6 @@ Router.get('/signout',(req,res)=> {
 	}
 })
 
-displayRoutes.addRoute({type:'get',url:'/user/one/:id/'});
-displayRoutes.addRoute({type:'get',url:'/user/signout/'});
 
 
 module.exports = Router;

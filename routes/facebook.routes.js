@@ -1,11 +1,7 @@
-/* this file is for passportjs social media routes
-	 all files in here go underneath yourorigin/auth/<route>
-*/
 const Router 	 	 = require('express').Router(),
-	passport 	  	 = require('passport'),
-	displayRoutes  	 = require('../config/displayroutes');
+	passport 	  	 = require('passport');
 
-require('../config/facebook.passport.js');
+require('../authentication/facebook.passport.js');
 
 
 Router.get('/', passport.authenticate('facebook',{
@@ -16,7 +12,5 @@ Router.get('/redirect',passport.authenticate('facebook'),(req,res) => {
 })
 
 
-displayRoutes.addRoute({type:'get',url:'/auth/facebook/'});
-displayRoutes.addRoute({type:'get',url:'/auth/facebook/redirect'});
 
 module.exports = Router;

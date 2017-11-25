@@ -1,5 +1,3 @@
-// your entry point file
-
 const express 	   = require('express'), 
 	app 	  	   = express(),
 	mongoose  	   = require('mongoose'),
@@ -8,14 +6,14 @@ const express 	   = require('express'),
 	session 	   = require('express-session'),
 	ejs			   = require('ejs'),
 	fs 			   = require('fs');
-	key 	  	   = require('./key'),
 
-	displayRoutes  = require('./config/displayroutes'),
-	localRoutes    = require('./routes/localuser.routes'),
-	userRoutes 	   = require('./routes/user.routes'),
+const localRoutes  = require('./routes/local.routes'),
+	googleRoutes   = require('./routes/google.routes'),
+	facebookRoutes = require('./routes/facebook.routes'),
+	userRoutes 	   = require('./routes/user.routes');
 
-
-	db			   = key.remoteURL || 'mongodb://localhost/'+key.db,
+const key 	  	   = require('./key'),
+	db			   = key.db.remoteURL || 'mongodb://localhost/'+key.db.name,
 	port		   = process.env.PORT || 3000;
 
 mongoose.connect(db);
@@ -23,46 +21,34 @@ mongoose.connect(db);
 
 
 app.set('view engine','ejs');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(session({ secret: key.encryptionKey }));
-
+app.use(session({ secret: key.session.secret }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-if (fs.existsSync('./routes/facebook.routes')) {
-   app.use('/auth/facebook/',require('./routes/facebook.routes'));
-}
-
-if(fs.existsSync('./routes/google.routes')) {
-	app.use('/auth/google/',require('./routes/google.routes'));
-}
-
-
-
-app.use('/localuser/',localRoutes);
+app.use('/auth/facebook/',require('./routes/facebook.routes'));
+app.use('/auth/google/',require('./routes/google.routes'));
+app.use('/local/',localRoutes);
 app.use('/user/',userRoutes);
-
-
 app.use(express.static('public'));
 
+
+
+
+
 app.get('/',(req,res) => {
-	res.render('index',{errors: [],successes:[]});
+	res.render('index');
 })
 
 
-
-displayRoutes.addRoute({type:'get',url:'/'})
-displayRoutes.viewRoutes();
 
 
 app.listen(port,(error)=>{
 	if(error){
 		console.log(error);
+	}else if(port === 3000){
+		console.log('listening on http://localhost:' + port);
 	}else{
-		console.log('listening on port:',port);
+		console.log('listening on port', port);
 	}
 });

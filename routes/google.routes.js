@@ -2,10 +2,9 @@
 	 all files in here go underneath yourorigin/auth/<route>
 */
 const Router 	 	 = require('express').Router(),
-	passport 	  	 = require('passport'),
-	displayRoutes  	 = require('../config/displayroutes');
+	passport 	  	 = require('passport');
 
-require('../config/google.passport.js');
+require('../authentication/google.passport.js');
 
 
 Router.get('/', passport.authenticate('google',{
@@ -16,7 +15,5 @@ Router.get('/redirect',passport.authenticate('google'),(req,res) => {
 })
 
 
-displayRoutes.addRoute({type:'get',url:'/auth/google/'});
-displayRoutes.addRoute({type:'get',url:'/auth/google/redirect'});
 
 module.exports = Router;
