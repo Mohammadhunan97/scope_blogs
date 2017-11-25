@@ -3,7 +3,6 @@
 
 ## Routes:
 
-###### All User Routes (Routes that work for every user, regardless of how they were create [i.e locally or with facebook/google]):
   ROUTE ACTION |    PATHNAME   | USAGE   
 | ------------- |:-------------:| -----:|
 GET | '/' | if(!session user): renders login form 
