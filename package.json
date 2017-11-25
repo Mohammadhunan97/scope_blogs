@@ -7,5 +7,15 @@
     "test": "node app"
   },
   "author": "mohammad hunan <mohammadhunan@gmail.com | @moe.mkr>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "chalk": "^2.3.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.13.5",
+    "passport": "^0.4.0"
+  }
 }
