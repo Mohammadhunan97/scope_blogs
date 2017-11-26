@@ -18,6 +18,15 @@ let PostSchema = new Schema({
 	},
 	tags: {
 		type: [String]
+	},
+	timecreated: {
+		type: Date,
+		required: true,
+		default: Date.now()
+	},
+	lastupdated: {
+		type: Date,
+		required: true
 	}
 })
 

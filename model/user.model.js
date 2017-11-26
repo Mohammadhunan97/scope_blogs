@@ -2,44 +2,53 @@ const mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-	  facebookid: {
+	facebookid: {
+		type: String,
+		default: null,
+	},
+	googleid: {
 	    type: String,
 	    default: null,
-	  },
-	  googleid: {
-	    type: String,
-	    default: null,
-	  },
-	  email: {
+	},
+	email: {
 	    type: String,
 	    required: true,
 	    unique: true,
-	  },
-	  username: {
+	},
+	username: {
 	    type: String,
 	    required: true,
 	    unique: true,
-	  },
-	  password: {
+	},
+	password: {
 	    type: String,
 	    default: null,
-	  },
-	  profile_pic: {
+	},
+	profile_pic: {
 	    type: String,
-	    default: '/profilepic.png',
-	  },
-	  following: {
+	    default: '/img/profilepic.png',
+	},
+	following: {
 	    type: mongoose.Schema.Types.ObjectId,
 	    ref: 'User'
-	  },
-	  followers: {
+	},
+	followers: {
 	    type: mongoose.Schema.Types.ObjectId,
 	    ref: 'User'
-	  },
-	  posts: {
+	},
+	posts: {
 	    type: mongoose.Schema.Types.ObjectId,
 	    ref: 'Post'
-	  }
+	},
+	timecreated: {
+		type: Date,
+		required: true,
+		default: Date.now()
+	},
+	lastupdated: {
+		type: Date,
+		required: true
+	}
 })
 
 
