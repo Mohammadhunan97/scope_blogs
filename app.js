@@ -10,7 +10,8 @@ const express 	   = require('express'),
 const localRoutes  = require('./routes/local.routes'),
 	googleRoutes   = require('./routes/google.routes'),
 	facebookRoutes = require('./routes/facebook.routes'),
-	userRoutes 	   = require('./routes/user.routes');
+	userRoutes 	   = require('./routes/user.routes'),
+	baseRoutes     = require('./routes/base.routes.js');
 
 const key 	  	   = require('./key'),
 	db			   = key.db.remoteURL || 'mongodb://localhost/'+key.db.name,
@@ -26,24 +27,15 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({ secret: key.session.secret }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/auth/facebook/',require('./routes/facebook.routes'));
-app.use('/auth/google/',require('./routes/google.routes'));
-app.use('/local/',localRoutes);
+
+
+app.use('/auth/facebook/',facebookRoutes);
+app.use('/auth/google/', googleRoutes);
+app.use('/auth/local/',localRoutes);
 app.use('/user/',userRoutes);
+app.use('/',baseRoutes);
+
 app.use(express.static('public'));
-
-
-
-app.get('/',(req,res) => {
-	if(!req.session.user || ! req.user ) {
-		res.render('login');
-	}else{
-		res.render('dashboard');
-	}
-	
-})
-
-
 
 
 app.listen(port,(error)=>{
