@@ -19,8 +19,8 @@ GET | '/post/update/:id/' | renders an update post layout based on the informati
 | | |
 GET | '/user/profile/:id/' | renders public profile for req.params.id
 GET | '/user/profile/settings/' | renders private profile for session user
-POST | '/user/follower/new/' | creates a new follower for the session user
-DELETE | '/user/follower/:id/' | removes a follower from session user's document based on params.id 
+PUT | '/user/follower/new/' | update session user to creates a new follower for the session user
+PUT | '/user/follower/:id/' | update session user to removes a follower from session user's document based on params.id 
 | | |
 POST | '/auth/facebook/new/' | creates a new facebook user in database
 POST | '/auth/google/new/' | creates a new google user in database
