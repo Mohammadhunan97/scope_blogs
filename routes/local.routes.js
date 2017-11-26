@@ -1,3 +1,4 @@
+// localhost:3000/auth/local/<Route>
 const Router 	   = require('express').Router(),
 	User		   = require('../model/user.model'),
 	bcrypt 		   = require('bcryptjs'),
@@ -9,7 +10,6 @@ const Router 	   = require('express').Router(),
 Router.post('/login',(req,res)=>{
 	User.find({username: req.body.username},(err,user)=>{
 		if(user.length === 0 || bcrypt.compareSync(req.body.password, user[0].password) !== true){
-			// if there's no user returned or if the password does not match
 			res.redirect("/");
 		}else{
 			req.session.localUser = user[0];
