@@ -2,32 +2,44 @@ const mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-	timecreated: {
-		type: Date,
-		required: true,
-		default: Date.now()
-	},
-	lastupdated: {
-		type: Date,
-		required: true
-	},
-	username: {
-		type: String,
-		required: true,
-		unique: true
-	},
-	password: {
-		type: String,
-		required: false //only required for local users
-	},
-	googleid: {
-		type: Number,
-		required: false //only needed for google users
-	},
-	facebookid: {
-		type: Number,
-		required: false //only needed for facebook users
-	}
+	  facebookid: {
+	    type: String,
+	    default: null,
+	  },
+	  googleid: {
+	    type: String,
+	    default: null,
+	  },
+	  email: {
+	    type: String,
+	    required: true,
+	    unique: true,
+	  },
+	  username: {
+	    type: String,
+	    required: true,
+	    unique: true,
+	  },
+	  password: {
+	    type: String,
+	    default: null,
+	  },
+	  profile_pic: {
+	    type: String,
+	    default: '/profilepic.png',
+	  },
+	  following: {
+	    type: mongoose.Schema.Types.ObjectId,
+	    ref: 'User'
+	  },
+	  followers: {
+	    type: mongoose.Schema.Types.ObjectId,
+	    ref: 'User'
+	  },
+	  posts: {
+	    type: mongoose.Schema.Types.ObjectId,
+	    ref: 'Post'
+	  }
 })
 
 
