@@ -9,6 +9,7 @@ GET | '/' | if(!session user): renders login form
 GET | '/' | if(session user): renders private profile
 GET | '/signup/' | if(!session user): renders signup form + signup with facebook/google buttons
 | | |
+GET | '/signup/' | if(session user): redirects '/'
 GET | '/post/dashboard'/ | renders all session user's followers posts
 GET | 'post/search/:query/' | renders all posts based on query
 GET | '/post/new/' | renders new_post layout (form to create a new post)
