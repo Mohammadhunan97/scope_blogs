@@ -36,7 +36,7 @@ Router.post('/new',(req,res) => {
 			}		
 		})
 	}else{
-		res.redirect("/"); // redirect with some message of incorrect login
+		res.redirect("/"); 
 	}
 	
 })
