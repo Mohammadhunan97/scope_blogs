@@ -43,3 +43,24 @@ password | . | string
 profilepic | . | string
 lastupdated | . | Date.now()
 
+
+### Facebook User
+  
+  NAME  |    .   |    DATA TYPE
+| ------------- |:-------------:| -----:|
+facebookid | . |  profile.id
+email | . |  profile.email ? (unique)
+username | . |  profile.displayName (unique)
+profile_pic | . | profile.image
+lastupdated | . | Date.now()
+
+
+### Google User
+  
+  NAME  |    .   |    DATA TYPE
+| ------------- |:-------------:| -----:|
+googleid | . |  profile.id
+email | . | profile.email?
+username | . | profile.displayName?
+profile_pic | . | profile.img?
+lastupdated | . | Date.now()
