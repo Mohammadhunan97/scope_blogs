@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scope Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+	<link rel="stylesheet" href="/css/signup.css" />
+</head>
+<body>
+
+	<h1>Scope Blogs</h1>
+	<% include ./partials/signup.ejs %>
+	<br/>
+
+	<p> Already have an account? </p>
+	<br/>
+	<div class="social-items">
+		<a class="social-button" id="local-btn" href="/">Log In</a>
+		<a class="social-button" id="google-btn" href="/auth/google">Sign in With Google</a>
+		<a class="social-button" id="facebook-btn" href="/auth/facebook">Sign in With Facebook</a>
+	</div>
+
+</body>
+</html>

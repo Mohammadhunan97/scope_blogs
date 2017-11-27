@@ -11,5 +11,16 @@ Router.get('/',(req,res) => {
 })
 
 
+Router.get('/signup/',(req,res) => {
+
+	if(req.session.user || req.user) {
+		res.redirect('/');
+	}else {
+		res.render('signup');
+	}
+
+})
+
+
 
 module.exports = Router;

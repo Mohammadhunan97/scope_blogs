@@ -1,0 +1,26 @@
+body{
+	text-align: center;
+}
+.localuserform {
+	width: 60%;
+    margin-left: 20%;
+}
+.social-items{
+	display: flex;
+	flex-direction: column;
+	width: 40vw;
+	margin-left: 30vw;
+}
+.social-button{
+	color: #337ab7;
+    text-decoration: none;
+    border: 1px solid #eee;
+    padding: 20px 100px 20px 100px;
+    margin: 10px 0px 10px 0px;
+    background: #eee;
+    flex: 1;
+}
+.social-button:hover{
+	text-decoration: none;
+}
+
