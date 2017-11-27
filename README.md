@@ -29,3 +29,17 @@ POST | '/auth/local/new/' | creates a new facebook user in database
 POST | '/auth/facebook/login/' | creates a facebook user session
 POST | '/auth/google/login/' | creates a google user session
 POST | '/auth/local/login/' | creates a local user session
+
+
+## Models: 
+
+### Local User
+  
+  NAME  |    .   |    DATA TYPE
+| ------------- |:-------------:| -----:|
+email | . | string
+username | . | string
+password | . | string
+profilepic | . | string
+lastupdated | . | Date.now()
+
