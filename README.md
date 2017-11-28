@@ -64,3 +64,14 @@ email | . | profile.email?
 username | . | profile.displayName?
 profile_pic | . | profile.img?
 lastupdated | . | Date.now()
+
+
+### POST 
+  NAME  |    .   |    DATA TYPE
+| ------------- |:-------------:| -----:|
+  title | . | string
+  description | . | string
+  image | . | string
+  original_poster | . | ref('User')
+  tags | . |[String]
+  lastupdated | . | Date.now()
