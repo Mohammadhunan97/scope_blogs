@@ -8,13 +8,15 @@ const Router 	   = require('express').Router(),
 
 
 Router.post('/login',(req,res)=>{
-	User.find({username: req.body.username},(err,user)=>{
-		if(user.length === 0 || bcrypt.compareSync(req.body.password, user[0].password) !== true){
-			res.redirect("/");
+	User.findOne({username: req.body.username},(err,user)=>{
+
+		if(bcrypt.compareSync(req.body.password, user.password) !== true){
+			res.render('login',{errors: ['could not login']})
 		}else{
-			req.session.localUser = user[0];
-			res.redirect("/user/one/"+user[0]._id);
+			req.session.user = user._id;
+			res.redirect('/');
 		}
+
 	})
 })
 
@@ -24,13 +26,22 @@ Router.post('/new',(req,res) => {
 	let passwordNotEmpty = req.body.password.length > 0;
 	let usernameNotEmpty = req.body.username.length > 0;
 	let emailNotEmpty = req.body.email.length > 0;
+	let usernameInUser = null;
+
+	User.find({
+		username: req.body.username
+	},(err,user) => { if(user) { 
+		errors.push('username ' + req.body.username + ' is already in use')}})
+	User.find({
+		email: req.body.email
+	},(err,user) => { if(user) { errors.push('email ' + req.body.email + ' is already in use')}})
+
 
 	if(!passwordsMatch){ errors.push('password fields must match'); }
 	if(!passwordNotEmpty){ errors.push('password field cannot be empty ')}
 	if(!usernameNotEmpty){ errors.push('username field cannot be empty ')}
 	if(!emailNotEmpty){ errors.push('email field cannot be empty ')}
 
-	console.log(errors.length);
 
 	if(errors.length > 0){
 		res.render('signup',{errors: errors});
@@ -39,7 +50,7 @@ Router.post('/new',(req,res) => {
 		let newuser = new User;
 		newuser.email = req.body.email;
 		newuser.username = req.body.username;
-		newuser.password = req.body.password;
+		newuser.password = bcrypt.hashSync(req.body.password,salt);
 		newuser.profile_pic = req.body.profile_pic;
 		newuser.lastupdated = Date.now();
 

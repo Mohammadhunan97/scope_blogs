@@ -9,6 +9,11 @@
 </head>
 <body>
 
+	<% errors.forEach((err) => { %>
+		<p class="alert alert-danger"> 
+		<%= err %>
+		</p>
+	<% }) %>
 
 	<h1>Scope Blogs</h1>
 	<% include ./partials/login.ejs %>
