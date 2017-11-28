@@ -19,25 +19,45 @@ Router.post('/login',(req,res)=>{
 })
 
 Router.post('/new',(req,res) => {
-	if(req.body.password === req.body.password2){
-		let newuser 		= new User;
-		newuser.lastupdated = Date.now();
-		newuser.username 	= req.body.username;
-		newuser.password 	= bcrypt.hashSync(req.body.password,salt); 
-		newuser.googleid 	= null;
-		newuser.facebookid  = null;
+	let errors = [];
+	let passwordsMatch = req.body.password === req.body.password2;
+	let passwordNotEmpty = req.body.password.length > 0;
+	let usernameNotEmpty = req.body.username.length > 0;
+	let emailNotEmpty = req.body.email.length > 0;
 
-		newuser.save((err, user) => {
-			if(err){ 
-				res.send(err);
-			}else{
-				req.session.localUser = user;
-				res.redirect("/user/one/"+user._id);
-			}		
-		})
+	if(!passwordsMatch){ errors.push('password fields must match'); }
+	if(!passwordNotEmpty){ errors.push('password field cannot be empty ')}
+	if(!usernameNotEmpty){ errors.push('username field cannot be empty ')}
+	if(!emailNotEmpty){ errors.push('email field cannot be empty ')}
+
+	console.log(errors.length);
+
+	if(errors.length > 0){
+		res.render('signup',{errors: errors});
 	}else{
-		res.redirect("/"); 
+
+		let newuser = new User;
+		newuser.email = req.body.email;
+		newuser.username = req.body.username;
+		newuser.password = req.body.password;
+		newuser.profile_pic = req.body.profile_pic;
+		newuser.lastupdated = Date.now();
+
+		newuser.save((err,user) => {
+			if(err){ 
+				let errors = [];
+				errors.push('something went wrong');
+				errors.push(JSON.stringify(err));
+
+				res.render('signup', {errors,})
+			}else{
+				req.session.user = user._id;
+				res.redirect('/');
+			}
+		})
+
 	}
+
 	
 })
 

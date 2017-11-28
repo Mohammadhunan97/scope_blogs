@@ -38,6 +38,11 @@ app.use('/',baseRoutes);
 app.use(express.static('public'));
 
 
+
+app.get('*',(req,res) => {
+	res.redirect('/');
+})
+
 app.listen(port,(error)=>{
 	if(error){
 		console.log(error);

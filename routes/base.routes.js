@@ -12,11 +12,11 @@ Router.get('/',(req,res) => {
 
 
 Router.get('/signup/',(req,res) => {
-
+	let errors = [];
 	if(req.session.user || req.user) {
 		res.redirect('/');
 	}else {
-		res.render('signup');
+		res.render('signup',{errors: errors});
 	}
 
 })
