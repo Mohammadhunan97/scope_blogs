@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Profile</title>
+	<title>Scope Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+	<link rel="stylesheet" href="/css/profile.css" />
 </head>
 <body>
 
-	<div style="text-align: center">
-		<h2>Your customizable Profile Page</h2>
-		<h2> </h2>
-		<a href="/user/signout">Logout</a>
-	</div>
+	<% include ./partials/nav.ejs %>
+
+	<h3>Settings of User: <%= user.username %> </h3>
+
+	<img class="user-photo" src="<%= user.profile_pic %>" onerror="this.src='/img/profilepic.png' " />
+
+	<p> Alter your settings </p>
+
+	<label for="profile_pic">Profile Picture Source:</label>
+	<input name="profile_pic" id="profile_pic" value="<%= user.profile_pic %> " />
 
 </body>
 </html>
+
+

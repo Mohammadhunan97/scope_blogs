@@ -11,7 +11,8 @@ const localRoutes  = require('./routes/local.routes'),
 	googleRoutes   = require('./routes/google.routes'),
 	facebookRoutes = require('./routes/facebook.routes'),
 	userRoutes 	   = require('./routes/user.routes'),
-	baseRoutes     = require('./routes/base.routes.js');
+	baseRoutes     = require('./routes/base.routes'),
+	postRoutes 	   = require('./routes/post.routes');
 
 const key 	  	   = require('./key'),
 	db			   = key.db.remoteURL || 'mongodb://localhost/'+key.db.name,
@@ -33,6 +34,7 @@ app.use('/auth/facebook/',facebookRoutes);
 app.use('/auth/google/', googleRoutes);
 app.use('/auth/local/',localRoutes);
 app.use('/user/',userRoutes);
+app.use('/post/',postRoutes);
 app.use('/',baseRoutes);
 
 app.use(express.static('public'));

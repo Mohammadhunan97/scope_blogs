@@ -2,3 +2,25 @@ body{
 	margin: 0px;
 	padding: 0px;
 }
+.nav{
+	display: flex;
+	background: #e74c3c;
+	padding: 5px;
+}
+.nav-item{
+	flex: 1;
+	margin-left: 50px;
+	margin-top: 10px;
+	color: white;
+}
+.nav-item:hover{
+	text-decoration: none;
+	color: white;
+	font-weight: 800;
+}
+@media only screen and (max-width: 700px) {
+	.nav{
+		flex-direction: column;
+		text-align: center;
+	}
+}

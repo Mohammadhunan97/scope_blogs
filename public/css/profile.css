@@ -1,0 +1,8 @@
+body{
+	text-align: center;
+}
+.user-photo{
+	width: 200px;
+	padding: 5px;
+	border: 1px solid black;
+}

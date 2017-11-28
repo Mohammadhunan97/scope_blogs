@@ -8,15 +8,16 @@ const Router 	   = require('express').Router(),
 
 
 Router.post('/login',(req,res)=>{
-	User.findOne({username: req.body.username},(err,user)=>{
-
-		if(bcrypt.compareSync(req.body.password, user.password) !== true){
-			res.render('login',{errors: ['could not login']})
-		}else{
+	let errors = [];
+	User.findOne({username: req.body.username},(err,user) => {
+		let userExists = user;
+		if(userExists && (bcrypt.compareSync(req.body.password, user.password) === true)){
 			req.session.user = user._id;
-			res.redirect('/');
+	 		res.redirect('/');
+		}else{
+			errors.push('could not log in');
+			res.render('login',{errors,})
 		}
-
 	})
 })
 

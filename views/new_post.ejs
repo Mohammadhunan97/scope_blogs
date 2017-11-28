@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scope Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+	<link rel="stylesheet" href="/css/new_post.css" />
+</head>
+<body>
+
+	<% include ./partials/nav.ejs %>
+ 
+	<h1 class="post-header"> make new post </h1>
+
+	<form action="/post/new/" method="post">
+		<input type="text" name="title" placeholder="post title" class="form-control" />
+		<br/>
+		<textarea name="description" placeholder="post description" class="form-control"></textarea>
+		<br/>
+		<input type="text" name="image" placeholder="https://whateversite.com/yourimage.png" class="form-control" />
+		<br/>
+		<input type="submit" class="btn">
+	</form>
+
+<!-- title	.	string
+description	.	string
+image	.	string
+original_poster	.	ref('User')
+tags	.	[String]
+lastupdated	.	Date.now() -->
+
+</body>
+</html>
+
+
+
