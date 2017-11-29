@@ -1,0 +1,18 @@
+.dashboard-post{
+	text-align: center;
+}
+.post-tag{
+	background-color: #eee;
+	padding: 10px;
+	margin: 10px;
+}
+.search-btn{
+	background-color: #3498db;
+	min-width: 30vw;
+	padding: 10px;
+	margin: 20px 20px 20px 15vw;
+}
+.searcher{
+    width: 60vw;
+    margin-left: 20vw; 
+}

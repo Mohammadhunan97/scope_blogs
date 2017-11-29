@@ -44,8 +44,8 @@ Router.get('/search/',(req,res) => {
 	res.render('search', {posts: []});
 })
 
-Router.get('/search/:id',(req,res) => {
-	Post.find({tags: req.params.search}).populate('original_poster', ['username']).then((posts) => {
+Router.get('/search/:tag',(req,res) => {
+	Post.find({tags: req.params.tag}).populate('original_poster', ['username']).then((posts) => {
 		res.render('search', {posts,});
 	})
 })
