@@ -49,6 +49,8 @@ Router.post('/new',(req,res) => {
 	}else{
 
 		let newuser = new User;
+		newuser.following.push(newuser._id);
+		newuser.followers.push(newuser._id);
 		newuser.email = req.body.email;
 		newuser.username = req.body.username;
 		newuser.password = bcrypt.hashSync(req.body.password,salt);

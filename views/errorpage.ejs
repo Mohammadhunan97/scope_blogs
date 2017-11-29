@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Husky Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+
+</head>
+<body>
+
+	<h1 style="text-align:center">Looks like something went wrong</h1>
+
+	<% errors.forEach((err) => { %>
+		<p class="alert alert-danger"> 
+		<%= err %>
+		</p>
+	<% }) %>
+
+</body>
+</html>

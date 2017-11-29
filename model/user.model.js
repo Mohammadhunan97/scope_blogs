@@ -29,14 +29,12 @@ let UserSchema = new Schema({
 	    default: '/img/profilepic.png',
 	},
 	following: {
-	    type: [mongoose.Schema.Types.ObjectId],
-	    ref: 'User',
-	    default: [mongoose.Types.ObjectId(this._id),mongoose.Types.ObjectId('5a1dc82f3c8676261f2370d1')]
+	    type: [Schema.Types.ObjectId],
+	    ref: 'User'
 	},
 	followers: {
-	    type: [mongoose.Schema.Types.ObjectId],
-	    ref: 'User',
-	    default: [mongoose.Types.ObjectId(this._id),mongoose.Types.ObjectId('5a1dc82f3c8676261f2370d1')]
+	    type: [Schema.Types.ObjectId],
+	    ref: 'User'
 	},
 	posts: {
 	    type: mongoose.Schema.Types.ObjectId,

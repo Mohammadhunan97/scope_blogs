@@ -1,6 +1,7 @@
 // http://localhost:3000/post/<Route>
 const Router 	 	 = require('express').Router(),
-	Post 			 = require('../model/post.model');
+	Post 			 = require('../model/post.model'),
+	User 			 = require('../model/user.model');
 
 
 Router.get('/new',(req,res) => {
@@ -8,6 +9,7 @@ Router.get('/new',(req,res) => {
 })
 
 Router.post('/new',(req,res) => {
+	let errors = [];
 	let newpost = new Post;
 	newpost.title = req.body.title;
 	newpost.description = req.body.description;
@@ -17,28 +19,41 @@ Router.post('/new',(req,res) => {
 	newpost.lastupdated = Date.now();
 	newpost.save((err,post) => {
 		if(err){
-			console.log(err);
+			errors.push('could not create post');
+			res.render('errorpage',{errors,});
 		}else{
-			console.log(post);
+			res.redirect('/post/dashboard');
 		}
 	})
 })
 
 
+Router.get('/dashboard',(req,res) => {
+	User.findOne({ _id: req.session.user}).then((user) => {
+		user.followers.forEach((follower) => {
 
-Router.get('/dashboard', (req,res) => {
-	Post.find({ original_poster: req.session.user }).populate('original_poster','username').then((posts) =>{
-	    // res.send(JSON.stringify(posts));
+			Post.find({ original_poster: follower }).populate('original_poster', ['username']).then((posts) => {
+				res.render('dashboard', {posts,});
+			})
+		})
+	})
 
-	    posts.forEach((post) => {
-	    	console.log('the following post was made by: ' + post.original_poster.username);
-	    	console.log(JSON.stringify(post));
-	    	console.log('\n');
-	    })
-	}) //where req.session.user is an id (the logged in user's object id or _id)
+})
+
+Router.get('/search/',(req,res) => {
+	res.render('search', {posts: []});
+})
+
+Router.get('/search/:id',(req,res) => {
+	Post.find({tags: req.params.search}).populate('original_poster', ['username']).then((posts) => {
+		res.render('search', {posts,});
+	})
 })
 
 module.exports = Router;
 
 
 
+
+
+// .populate('original_poster.username')

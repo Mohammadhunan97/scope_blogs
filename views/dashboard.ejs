@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scope Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+	<link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+
+	<% include ./partials/nav %>
+	
+	<% posts.forEach((post) =>{ %>
+		<div id="<%= post._id %>" class="dashboard-post">
+			<h1> <%= post.title %> </h1>
+			<img src="<%= post.image %>" alt="<%= post.description %>"/>
+			<p> <%= post.description %> </p>
+			<% post.tags.forEach((tag) => { %>
+				<a href="/post/search/<%= tag %>" class="post-tag"> <%= tag %> </a>
+			<% }) %>
+
+			<br/>
+			<br/>
+			<a href="/post/reblog/<%= post._id %>">Reblog this Post</a>
+			<br/>
+			<a href="/one/<%= post.original_poster._id %>">Posted By <%= post.original_poster.username %></a>
+			<br/>
+		</div>
+	<% }) %>
+
+</body>
+</html>
+
