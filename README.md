@@ -17,6 +17,7 @@ POST | '/post/new/' | creates a new post in database
 DELETE | '/post/delete/:id/' | deletes post with the params.id
 PUT | '/post/update/:id/' | updates a post with the params.id
 GET | '/post/update/:id/' | renders an update post layout based on the information of the post with the params.id
+POST | '/post/reblog/:id/' | reblogs post with params.id and adds it to session user's posts 
 | | |
 GET | '/user/profile/:id/' | renders public profile for req.params.id
 GET | '/user/profile/settings/' | renders private profile for session user
