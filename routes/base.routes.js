@@ -1,14 +1,13 @@
 const Router = require('express').Router(),
-	User = require('../model/user.model');
+	User = require('../model/user.model'),
+	Post = require('../model/post.model');
 
 Router.get('/',(req,res) => {
 
 	if(req.session.user) {
-		User.findOne({_id: req.session.user }).exec((err,user) => {
-			res.render('profile',{user,})
-		})
+		res.redirect('/user/profile/' + req.session.user);
 	}else if(req.user){
-		res.render('profile',{user: req.user})
+		res.redirect('/user/profile/' + req.user._id);
 	}else{
 		res.render('login', {errors: []});
 	}
@@ -29,3 +28,6 @@ Router.get('/signup/',(req,res) => {
 
 
 module.exports = Router;
+
+
+

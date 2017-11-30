@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<% include ./partials/nav %>
+	<%- include("./partials/nav",{user: user}) %>
 	
 	<% posts.forEach((post) =>{ %>
 		<div id="<%= post._id %>" class="dashboard-post">
@@ -21,8 +21,6 @@
 			<% }) %>
 
 			<br/>
-			<br/>
-			<a href="/post/reblog/<%= post._id %>">Reblog this Post</a>
 			<br/>
 			<a href="/one/<%= post.original_poster._id %>">Posted By <%= post.original_poster.username %></a>
 			<br/>

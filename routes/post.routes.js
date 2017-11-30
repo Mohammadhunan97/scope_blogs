@@ -5,7 +5,7 @@ const Router 	 	 = require('express').Router(),
 
 
 Router.get('/new',(req,res) => {
-	res.render('new_post');
+	res.render('new_post',{user: req.session.user});
 })
 
 Router.post('/new',(req,res) => {
@@ -33,7 +33,7 @@ Router.get('/dashboard',(req,res) => {
 		user.followers.forEach((follower) => {
 
 			Post.find({ original_poster: follower }).populate('original_poster', ['username']).then((posts) => {
-				res.render('dashboard', {posts,});
+				res.render('dashboard', {posts,user: req.session.user});
 			})
 		})
 	})
@@ -41,12 +41,12 @@ Router.get('/dashboard',(req,res) => {
 })
 
 Router.get('/search/',(req,res) => {
-	res.render('search', {posts: []});
+	res.render('search', {posts: [], user: req.session.user});
 })
 
 Router.get('/search/:tag',(req,res) => {
 	Post.find({tags: req.params.tag}).populate('original_poster', ['username']).then((posts) => {
-		res.render('search', {posts,});
+		res.render('search', {posts,user: req.session.user});
 	})
 })
 

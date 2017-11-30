@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scope Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/scope.css" />
+	<link rel="stylesheet" href="/css/settings.css" />
+</head>
+<body>
+
+
+	<%- include("./partials/nav",{user: user._id}) %>
+	<div class="container">
+
+		<h2><%= user.username %> </h2>
+		<img class="user-photo" src="<%= user.profile_pic %>" onerror="this.src='/img/profilepic.png' " />
+		<p class="user-email"><%= user.email %></p>
+
+		<h3>Followers </h3>
+		<hr/>
+		<div class="followers-area">
+			<% followers.forEach((follower) =>{ %>
+				<a href="/user/profile/<%= follower._id %>"> <%= follower.username %> </a> 
+				<br/>
+			<% }) %>
+		</div>
+		<h3>Users you are following </h3>
+		<hr/>
+		<div class="following-area">
+			<% followings.forEach((following) =>{ %>
+				<div class="following-usr">
+					<a href="/user/profile/<%= following._id %>" class="following-item"> <%= following.username %> </a> 
+					<button class="btn following-item"> Unfollow </button>
+				</div>
+				<br/>
+			<% }) %>
+		</div>
+		
+
+		<% posts.forEach((post) =>{ %>
+			<div id="<%= post._id %>" class="dashboard-post">
+				<div class="my-post">
+					<h1> <%= post.title %> </h1>
+					<img src="<%= post.image %>" alt="<%= post.description %>"/>
+					<p> <%= post.description %> </p>
+					<% post.tags.forEach((tag) => { %>
+						<a href="/post/search/<%= tag %>" class="post-tag"> <%= tag %> </a>
+					<% }) %>
+				</div>
+				<button class="btn delete-btn">Delete this post</button>
+				<br/>
+			</div>
+		<% }) %>
+	</div>
+
+
+
+</body>
+</html>
+
+
+
+

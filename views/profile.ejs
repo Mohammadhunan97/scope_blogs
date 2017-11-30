@@ -9,16 +9,32 @@
 </head>
 <body>
 
-	<% include ./partials/nav.ejs %>
+	<div class="nav">
+		<a href="/post/dashboard/" class="nav-item">Dashboard</a>
+		<a href="/post/new/" class="nav-item">New Post</a>
+		<a href="/post/search/" class="nav-item">Search</a>
+		<a href="/user/profile/<%= user._id %>" class="nav-item"> Profile </a>
+		<a href="/user/settings" class="nav-item">Settings</a>
+	</div>
 
-	<h3>Settings of User: <%= user.username %> </h3>
+
+	<h3><%= user.username %> </h3>
 
 	<img class="user-photo" src="<%= user.profile_pic %>" onerror="this.src='/img/profilepic.png' " />
 
-	<p> Alter your settings </p>
+	<% posts.forEach((post) =>{ %>
+		<div id="<%= post._id %>" class="dashboard-post">
+			<h1> <%= post.title %> </h1>
+			<img src="<%= post.image %>" alt="<%= post.description %>"/>
+			<p> <%= post.description %> </p>
+			<% post.tags.forEach((tag) => { %>
+				<a href="/post/search/<%= tag %>" class="post-tag"> <%= tag %> </a>
+			<% }) %>
 
-	<label for="profile_pic">Profile Picture Source:</label>
-	<input name="profile_pic" id="profile_pic" value="<%= user.profile_pic %> " />
+			<br/>
+		</div>
+	<% }) %>
+
 
 </body>
 </html>

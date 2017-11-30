@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="/css/search.css" />
 </head>
 <body>
-	<% include ./partials/nav %>
+	<%- include("./partials/nav",{user: user}) %>
 
 
 	<br/>
@@ -32,10 +32,11 @@
 			<br/>
 			<a href="/post/reblog/<%= post._id %>">Reblog this Post</a>
 			<br/>
-			<a href="/one/<%= post.original_poster._id %>">Posted By <%= post.original_poster.username %></a>
+			<a href="/user/profile/<%= post.original_poster._id %>">Posted By <%= post.original_poster.username %></a>
 			<br/>
 		</div>
 	<% }) %>
 
 </body>
 </html>
+

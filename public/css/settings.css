@@ -1,0 +1,38 @@
+body{
+	text-align: center;
+}
+.following-area,.followers-area{
+	height: 150px;
+	overflow-y: auto;
+	margin-bottom: 50px;
+}
+.following-usr{
+	display: flex;
+}
+.following-item{
+	flex: 1;
+}
+.container{
+	width: 80vw;
+	margin-left: 10vw;
+}
+.post-tag{
+	background-color: #eee;
+	padding: 10px;
+	margin: 10px;
+}
+.dashboard-post{
+	display: flex;
+}
+.my-post,.delete-btn{
+	flex: 1;
+}
+.delete-btn{
+	height: 50px;
+    margin-top: 190px;
+}
+.user-email{
+	background-color: #eee;
+	margin: 20px 0px 20px 0px;
+	padding: 20px 0px 20px 0px;
+}
